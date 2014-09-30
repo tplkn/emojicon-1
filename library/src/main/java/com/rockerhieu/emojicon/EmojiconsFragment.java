@@ -23,7 +23,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.*;
@@ -61,7 +61,7 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
         emojisPager.setOnPageChangeListener(this);
         // we handle recents
         EmojiconRecents recents = this;
-        mEmojisAdapter = new EmojisPagerAdapter(getFragmentManager(), Arrays.asList(
+        mEmojisAdapter = new EmojisPagerAdapter(getChildFragmentManager(), Arrays.asList(
                 EmojiconRecentsGridFragment.newInstance(mUseSystemDefault),
                 EmojiconGridFragment.newInstance(People.DATA, recents, mUseSystemDefault),
                 EmojiconGridFragment.newInstance(Nature.DATA, recents, mUseSystemDefault),
@@ -188,7 +188,7 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
     public void onPageScrollStateChanged(int i) {
     }
 
-    private static class EmojisPagerAdapter extends FragmentStatePagerAdapter {
+    private static class EmojisPagerAdapter extends FragmentPagerAdapter {
         private List<EmojiconGridFragment> fragments;
 
         public EmojisPagerAdapter(FragmentManager fm, List<EmojiconGridFragment> fragments) {
